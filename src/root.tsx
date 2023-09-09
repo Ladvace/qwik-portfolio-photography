@@ -5,6 +5,7 @@ import {
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
+import "virtual:uno.css";
 
 import "./global.css";
 
@@ -26,6 +27,12 @@ export default component$(() => {
       </head>
       <body lang="en">
         <RouterOutlet />
+        <div
+          id="loader"
+          class="bg-darkslate-900 text-neutral-50 text-3xl font-black uppercase flex justify-center items-center w-screen h-screen z-50 fixed top-0 bottom-0 right-0 left-0"
+        >
+          <h1 class="loading-name">Amalia D'onofrio</h1>
+        </div>
       </body>
     </QwikCityProvider>
   );

@@ -1,21 +1,38 @@
-import { defineConfig, presetIcons, presetWebFonts } from "unocss";
+import {
+  defineConfig,
+  presetIcons,
+  presetWebFonts,
+  transformerDirectives,
+} from "unocss";
+import type { Theme } from "@unocss/preset-uno";
 import presetUno from "@unocss/preset-uno";
+import presetTheme from "unocss-preset-theme";
 
 export default defineConfig({
   theme: {
     colors: {
-      persianBlue: {
-        "50": "#eef6ff",
-        "100": "#dcecff",
-        "200": "#b2daff",
-        "300": "#6dbcff",
-        "400": "#2099ff",
-        "500": "#007cff",
-        "600": "#005fdf",
-        "700": "#004bb4",
-        "800": "#004095",
-        "900": "#00357a",
-        "950": "#000814",
+      darkslate: {
+        50: "#3D3D3D",
+        100: "#2C2C2C",
+        200: "#262626",
+        300: "#202020",
+        400: "#1A1A1A",
+        500: "#171717",
+        600: "#141414",
+        700: "#111111",
+        800: "#0E0E0E",
+        900: "#0B0B0B",
+      },
+      primary: {
+        100: "#F9CDD3",
+        200: "#F3A3AA",
+        300: "#EC7981",
+        400: "#E64F59",
+        500: "#E63946",
+        600: "#CF2F3D",
+        700: "#B82534",
+        800: "#A01B2B",
+        900: "#891321",
       },
     },
   },
@@ -25,7 +42,7 @@ export default defineConfig({
       fonts: {
         sans: ["Cabinet Grotesk", "Satoshi"],
         serif: "Zodiak",
-        display: "Sharpie"
+        display: "Sharpie",
       },
     }),
     presetUno(),
@@ -36,5 +53,9 @@ export default defineConfig({
         ri: () => import("@iconify/json/json/ri.json").then((i) => i.default),
       },
     }),
+    presetTheme<Theme>({
+      theme: {},
+    }),
   ],
+  transformers: [transformerDirectives()],
 });
