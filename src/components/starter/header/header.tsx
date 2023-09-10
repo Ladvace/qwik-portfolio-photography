@@ -8,9 +8,9 @@ export default component$(() => {
           Gianmarco
         </h2>
       </div>
-      <ul class="list-none flex gap-4">
-        <li>About</li>
-        <li>Contact</li>
+      <ul class="list-none flex gap-4 m-0">
+        <li class="cursor-pointer">About</li>
+        <li class="cursor-pointer">Contact</li>
       </ul>
     </header>
   );

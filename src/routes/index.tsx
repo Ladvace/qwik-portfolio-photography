@@ -21,57 +21,58 @@ export default component$(() => {
       [
         "#inner-column-container",
         { height: ["350%", "100%"] },
-        { easing: "ease-in-out", duration: "2.5", name: "initial-scale" },
-      ],
-      [
-        "#animation-container",
-        { scale: ["0.1", "1"] },
-        { easing: "ease-in-out", at: "<", duration: "2" },
-      ],
-      [
-        ".isMiddle",
-        { scale: [1.5, 1] },
-        { easing: "ease-in-out", duration: "2", at: "<" },
-      ],
-      [
-        ".isCenter",
-        { y: ["40%", 0] },
-        { easing: "ease-in-out", duration: "2.5", at: "<" },
-      ],
-      [
-        ".isEdge",
-        { y: ["70%", 0] },
-        { easing: "ease-in-out", duration: "2.5", at: "<" },
+        { easing: "ease-in-out", duration: 2.5, name: "initial-scale" },
       ],
       [
         ".isReversed",
         { y: ["-40%", 0] },
-        { easing: "ease-in-out", duration: "2.5", at: "<" },
+        { easing: "ease-in-out", duration: 2.5, at: "<" },
       ],
-      ["#img-container", { padding: ["0", "2rem"] }, { easing: "ease-in-out" }],
+      [
+        ".isEdge",
+        { y: ["70%", 0] },
+        { easing: "ease-in-out", duration: 2.5, at: "<" },
+      ],
+      [
+        ".isCenter",
+        { y: ["40%", "0"] },
+        { easing: "ease-in-out", duration: 2.5, at: "<" },
+      ],
+      [
+        "#animation-container",
+        { scale: ["0.23", "1"] },
+        { easing: "ease-in-out", duration: 2, delay: 2 },
+      ],
+      [
+        ".isMiddle img",
+        { scale: ["1.5", "1"] },
+        { easing: "ease-in-out", duration: 2, delay: 2, at: "<" },
+      ],
+      // ----
       [
         "#outer-container",
         { opacity: [0, 1] },
         { duration: 0.5, easing: "ease-in-out" },
       ],
-      [
-        "#animation-container",
-        { opacity: ["1", "0"] },
-        { easing: "ease-in-out" },
-      ],
-      ["#header-name", { y: ["100%", "0%"] }, { at: "+0.1" }],
-      [
-        ".word",
-        {
-          y: ["100%", "0%"],
-          skewX: ["45deg", "0deg"],
-          rotate: ["10deg", "0deg"],
-        },
-        { delay: stagger(0.1), at: "+0.1" },
-      ],
+      // ["#img-container", { padding: ["0", "2rem"] }, { easing: "ease-in-out" }],
+      // [
+      //   "#animation-container",
+      //   { opacity: ["1", "0"] },
+      //   { easing: "ease-in-out" },
+      // ],
+      // ["#header-name", { y: ["100%", "0%"] }, { at: "+0.1" }],
+      // [
+      //   ".word",
+      //   {
+      //     y: ["100%", "0%"],
+      //     skewX: ["45deg", "0deg"],
+      //     rotate: ["10deg", "0deg"],
+      //   },
+      //   { delay: stagger(0.1), at: "+0.1" },
+      // ],
     ];
 
-    timeline(sequence as TimelineDefinition);
+    timeline(sequence as TimelineDefinition, { duration: 4 });
   });
 
   return (
@@ -100,7 +101,7 @@ export default component$(() => {
               </h2>
             </div>
           </div>
-          <div class="bg-gradient-to-t from-black opacity-50 absolute inset-0 z-0" />
+          <div class="bg-gradient-to-b from-black opacity-50 absolute inset-0 z-0" />
           <video autoPlay class="w-full h-full object-cover">
             <source
               src="https://cdn.coverr.co/videos/coverr-windsurfer-and-a-yacht-in-the-ocean-1930/1080p.mp4"

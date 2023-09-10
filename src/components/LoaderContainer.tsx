@@ -16,7 +16,7 @@ export const Column = component$(
             "flex flex-col flex-none justify-between items-stretch w-screen h-full",
           ]}
         >
-          <div id="img-container" class="w-screen h-screen box-border ">
+          <div id="img-container" class="w-screen h-screen box-border relative overflow-hidden ">
             <img
               width={300}
               height={100}
@@ -24,7 +24,7 @@ export const Column = component$(
               src="https://images.pexels.com/photos/17427379/pexels-photo-17427379/free-photo-of-a-pelican-by-a-sea.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             />
           </div>
-          <div id="img-container" class="w-screen h-screen box-border ">
+          <div id="img-container" class="w-screen h-screen box-border relative overflow-hidden ">
             <img
               width={300}
               height={100}
@@ -35,18 +35,10 @@ export const Column = component$(
           <div
             id="img-container"
             class={[
-              props.isMiddle ? "isMiddle" : "",
-              "w-screen h-screen box-border",
+              props.isMiddle ? "isMiddle p-8" : "",
+              "w-screen h-screen box-border relative overflow-hidden",
             ]}
           >
-            <img
-              width={300}
-              height={100}
-              class={["w-full h-full min-w-full rounded-xl object-cover"]}
-              src="https://images.pexels.com/photos/17427379/pexels-photo-17427379/free-photo-of-a-pelican-by-a-sea.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            />
-          </div>
-          <div id="img-container" class="w-screen h-screen box-border ">
             <img
               width={300}
               height={100}
@@ -54,7 +46,15 @@ export const Column = component$(
               src="https://images.pexels.com/photos/17427379/pexels-photo-17427379/free-photo-of-a-pelican-by-a-sea.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             />
           </div>
-          <div id="img-container" class="w-screen h-screen box-border ">
+          <div id="img-container" class="w-screen h-screen box-border relative overflow-hidden ">
+            <img
+              width={300}
+              height={100}
+              class="w-full h-full min-w-full rounded-xl object-cover"
+              src="https://images.pexels.com/photos/17427379/pexels-photo-17427379/free-photo-of-a-pelican-by-a-sea.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            />
+          </div>
+          <div id="img-container" class="w-screen h-screen box-border relative overflow-hidden ">
             <img
               width={300}
               height={100}
