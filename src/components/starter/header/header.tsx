@@ -8,10 +8,12 @@ export default component$(() => {
           Gianmarco
         </h2>
       </div>
-      <ul class="list-none flex gap-4 m-0">
-        <li class="cursor-pointer">About</li>
-        <li class="cursor-pointer">Contact</li>
-      </ul>
+      <div class="overflow-hidden">
+        <ul id="header-menu" class="list-none flex gap-4 m-0">
+          <li class="cursor-pointer">About</li>
+          <li class="cursor-pointer">Contact</li>
+        </ul>
+      </div>
     </header>
   );
 });
