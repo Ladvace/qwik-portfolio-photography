@@ -25,11 +25,11 @@ export const useServerTimeLoader = routeLoader$(() => {
 export default component$(() => {
   return (
     <>
-      <Header />
-      <main class="max-w-14">
+      {/* <Header /> */}
+      <main>
         <Slot />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 });
