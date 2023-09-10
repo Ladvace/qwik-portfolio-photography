@@ -27,12 +27,12 @@ export default component$(() => {
       </head>
       <body lang="en">
         <RouterOutlet />
-        <div
-          id="loader"
-          class="bg-darkslate-900 text-neutral-50 text-3xl font-black uppercase flex justify-center items-center w-screen h-screen z-50 fixed top-0 bottom-0 right-0 left-0"
+        {/* <div
+          id="global-loader"
+          class="fixed inset-0 opacity-100 bg-darkslate-900 text-neutral-50 text-3xl font-black uppercase flex justify-center items-center w-screen h-screen z-50"
         >
-          {/* <h1 class="loading-name">Gianmarco Cavallo</h1> */}
-        </div>
+          <h1 class="loading-name">Gianmarco Cavallo</h1>
+        </div> */}
       </body>
     </QwikCityProvider>
   );
