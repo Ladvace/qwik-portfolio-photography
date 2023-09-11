@@ -21,10 +21,8 @@ export const useServerTimeLoader = routeLoader$(() => {
 
 export default component$(() => {
   return (
-    <>
-      <main>
-        <Slot />
-      </main>
-    </>
+    <main>
+      <Slot />
+    </main>
   );
 });

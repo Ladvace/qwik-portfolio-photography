@@ -8,6 +8,7 @@ import { RouterHead } from "./components/router-head/router-head";
 import "virtual:uno.css";
 
 import "./global.css";
+import LoaderContainer from "./components/LoaderContainer";
 
 export default component$(() => {
   /**
@@ -29,9 +30,9 @@ export default component$(() => {
         <RouterOutlet />
         <div
           id="global-loader"
-          class="fixed inset-0 opacity-100 bg-darkslate-900 text-neutral-50 text-3xl font-black uppercase flex justify-center items-center w-screen h-screen z-50"
+          class="fixed inset-0 opacity-100 bg-darkslate-900 text-neutral-50 text-3xl font-black uppercase flex flex-col justify-center items-center w-screen h-screen z-50"
         >
-          <h1 class="loading-name">Gianmarco Cavallo</h1>
+          <h1 class="loading-name text-center m-0 leading-15">Gianmarco Cavallo</h1>
         </div>
       </body>
     </QwikCityProvider>

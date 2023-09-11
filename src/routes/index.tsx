@@ -86,22 +86,34 @@ export default component$(() => {
         },
         { delay: stagger(0.1), at: "+0.1" },
       ],
+      [
+        "#profession",
+        {
+          y: ["150%", "0%"],
+          skewX: ["45deg", "0deg"],
+          rotate: ["10deg", "0deg"],
+        },
+        { at: "+0.1" },
+      ],
     ];
 
     timeline(sequence as TimelineDefinition, { duration: 4 });
   });
 
   return (
-    <>
-      <div class="fixed w-full h-screen overflow-hidden flex justify-center items-center bg-darkslate-900">
+    <div class="flex flex-col h-[300vh]">
+      <div class="fixed inset-0 w-full h-screen overflow-hidden flex justify-center items-center bg-darkslate-900">
         <LoaderContainer />
       </div>
-      <div class="flex flex-col">
+      <div
+        id="outer-container"
+        class="z-0 w-screen h-full p-8 box-border opacity-0 origin-bottom-center flex flex-col"
+      >
         <div
-          id="outer-container"
-          class="w-screen h-screen p-8 box-border opacity-0 origin-bottom-center"
+          id="frame"
+          class="relative w-full h-[calc(100vh-4rem)] box-border overflow-hidden rounded-2xl bg-darkslate-900 flex flex-col justify-center items-center"
         >
-          <div class="relative w-full h-full overflow-hidden rounded-2xl bg-darkslate-900 flex justify-center items-center">
+          <div class="relative w-full h-full overflow-hidden rounded-2xl bg-darkslate-900 flex flex-col justify-center items-center">
             <Header />
             <div class="absolute top-1/2 left-1/2 -translate-1/2 flex flex-col items-center z-10">
               <div class="overflow-hidden flex flex-col items-center">
@@ -113,7 +125,7 @@ export default component$(() => {
                 </h1>
               </div>
               <div class="overflow-hidden flex flex-col items-center">
-                <h2 id="profession" class="m-0 text-white">
+                <h2 id="profession" class="m-0 text-white font-sans">
                   Photographer
                 </h2>
               </div>
@@ -129,8 +141,17 @@ export default component$(() => {
             </video>
           </div>
         </div>
+        <div>
+          <h2 class="mt-10">Works</h2>
+          <p class="text-white">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
+            numquam. Nemo perspiciatis exercitationem, porro quidem cum
+            architecto magni quae consequatur officia hic minus dignissimos
+            temporibus necessitatibus aperiam quod est laboriosam?
+          </p>
+        </div>
       </div>
-    </>
+    </div>
   );
 });
 
