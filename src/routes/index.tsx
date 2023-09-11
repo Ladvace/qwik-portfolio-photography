@@ -2,7 +2,7 @@ import { component$, useVisibleTask$ } from "@builder.io/qwik";
 import SplitType from "split-type";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import type { TimelineDefinition } from "motion";
-import { stagger, timeline } from "motion";
+import { animate, stagger, timeline } from "motion";
 import Header from "~/components/starter/header/header";
 import LoaderContainer from "~/components/LoaderContainer";
 import CollectionPreview from "~/components/CollectionPreview/CollectionPreview";
@@ -100,16 +100,33 @@ export default component$(() => {
     ];
 
     timeline(sequence as TimelineDefinition, { duration: 4 });
+
+    animate(
+      "#scroll-loader-bar",
+      { height: ["10%", "120%"], scaleX: [1, 2] },
+      { repeat: Infinity, duration: 2, direction: "alternate" }
+    );
   });
 
   return (
-    <div class="flex flex-col h-[300vh]">
+    <div
+      class="flex flex-col"
+      document:onscroll$={() => {
+        const scrollLoader = document.getElementById("scroll-loader");
+        if (!scrollLoader) return;
+        if (window.scrollY > 0) {
+          scrollLoader.style.opacity = "0";
+        } else {
+          scrollLoader.style.opacity = "1000";
+        }
+      }}
+    >
       <div class="fixed inset-0 w-full h-screen overflow-hidden flex justify-center items-center bg-darkslate-900">
         <LoaderContainer />
       </div>
       <div
         id="outer-container"
-        class="z-0 w-screen h-full p-8 box-border opacity-0 origin-bottom-center flex flex-col"
+        class="z-0 w-screen h-full max-w-[1920px] p-8 box-border opacity-0 origin-bottom-center flex flex-col"
       >
         <div
           id="frame"
@@ -123,7 +140,7 @@ export default component$(() => {
                   id="name"
                   class="m-0 flex gap-4 uppercase cursor-pointer hover:tracking-wide transition-all duration-100 ease-in-out text-2xl md:text-6xl font-extrabold text-white select-none"
                 >
-                  Gianmarco Cavallo
+                  John Smith
                 </h1>
               </div>
               <div class="overflow-hidden flex flex-col items-center">
@@ -141,6 +158,17 @@ export default component$(() => {
               <source src="movie.ogg" type="video/ogg" />
               Your browser does not support the video tag.
             </video>
+
+            <div
+              id="scroll-loader"
+              class="absolute bottom-10 right-10 w-38 md:w-25 opacity-100 transition-all duration-500 ease-in-out"
+            >
+              <div
+                id="scroll-loader-bar"
+                class="origin-top absolute right-0 top-0 w-0.5 h-full rounded-full bg-primary-500"
+              />
+              <p class="m-0 text-5xl md:text-3xl font-sans font-black">Scroll</p>
+            </div>
           </div>
         </div>
         <div class="flex flex-col">
@@ -152,8 +180,31 @@ export default component$(() => {
             temporibus necessitatibus aperiam quod est laboriosam?
           </p>
 
-          <div class="flex flex-col gap-4 mt-8">
-            <CollectionPreview />
+          <div class="flex flex-col gap-10 mt-16">
+            <CollectionPreview
+              title="India"
+              imgs={[
+                "https://images.pexels.com/photos/3536704/pexels-photo-3536704.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "https://images.pexels.com/photos/18277249/pexels-photo-18277249/free-photo-of-man-people-art-street.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "https://images.pexels.com/photos/3019411/pexels-photo-3019411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+              ]}
+            />
+            <CollectionPreview
+              title="India"
+              imgs={[
+                "https://images.pexels.com/photos/3536704/pexels-photo-3536704.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "https://images.pexels.com/photos/18277249/pexels-photo-18277249/free-photo-of-man-people-art-street.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "https://images.pexels.com/photos/3019411/pexels-photo-3019411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+              ]}
+            />
+            <CollectionPreview
+              title="India"
+              imgs={[
+                "https://images.pexels.com/photos/3536704/pexels-photo-3536704.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "https://images.pexels.com/photos/18277249/pexels-photo-18277249/free-photo-of-man-people-art-street.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "https://images.pexels.com/photos/3019411/pexels-photo-3019411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+              ]}
+            />
           </div>
         </div>
       </div>

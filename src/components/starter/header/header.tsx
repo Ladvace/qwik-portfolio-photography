@@ -5,7 +5,7 @@ export default component$(() => {
     <header class="absolute top-0 inset-x-0 w-full px-4 h-14 box-border text-white flex justify-between items-center z-10">
       <div class="overflow-hidden">
         <a id="header-name" class="m-0 font-display text-xl font-bold">
-          Gianmarco
+          John
         </a>
       </div>
       <div class="overflow-hidden">

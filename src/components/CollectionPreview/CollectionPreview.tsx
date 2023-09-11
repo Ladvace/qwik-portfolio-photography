@@ -6,18 +6,21 @@ interface Props {
   client?: string;
   date?: string;
   location?: string;
+  imgs: string[];
 }
 
 export default component$((props: Props) => {
   return (
     <div class="flex flex-col justify-center items-center">
-      <div class="flex justify-center items-center">
-        <h3 class="relative w-max m-0">TITOLO</h3>
-        <div class="w-4 mx-4 border-white border-1 border-solid" />
-        <h3>Armani</h3>
-      </div>
+      <header class="flex justify-center items-center text-neutral-100">
+        <h3 class="m-0 font-200 font-['Satoshi']">10/05/2021</h3>
+        <div class="w-4 mx-2 border-neutral-100 border-1 border-solid" />
+        <h3 class="m-0 font-200 font-['Satoshi']">Armani</h3>
+      </header>
+      <h2 class="relative w-max m-0 text-3xl">{props.title}</h2>
       <div class="relative w-full max-w-1/2 h-full min-h-60 md:min-h-100 max-w-3xl flex justify-center items-center text-black">
         <CollectionCard
+          img={props.imgs[0]}
           class={[
             "absolute",
             "left-4",
@@ -30,7 +33,7 @@ export default component$((props: Props) => {
           ]}
         />
         <CollectionCard
-          {...props}
+          img={props.imgs[1]}
           class={[
             "absolute",
             "z-30",
@@ -40,6 +43,7 @@ export default component$((props: Props) => {
           ]}
         />
         <CollectionCard
+          img={props.imgs[2]}
           class={[
             "absolute",
             "right-4",

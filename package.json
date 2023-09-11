@@ -45,6 +45,7 @@
     "vite-tsconfig-paths": "4.2.0"
   },
   "dependencies": {
+    "@studio-freight/lenis": "^1.0.22",
     "motion": "^10.16.2"
   }
 }

@@ -1,4 +1,4 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useVisibleTask$ } from "@builder.io/qwik";
 import {
   QwikCityProvider,
   RouterOutlet,
@@ -6,9 +6,8 @@ import {
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
 import "virtual:uno.css";
-
 import "./global.css";
-import LoaderContainer from "./components/LoaderContainer";
+import Lenis from "@studio-freight/lenis";
 
 export default component$(() => {
   /**
@@ -17,6 +16,21 @@ export default component$(() => {
    *
    * Don't remove the `<head>` and `<body>` elements.
    */
+
+  useVisibleTask$(() => {
+    const lenis = new Lenis();
+
+    lenis.on("scroll", (e: any) => {
+      console.log(e);
+    });
+
+    function raf(time: any) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  });
 
   return (
     <QwikCityProvider>
@@ -32,7 +46,7 @@ export default component$(() => {
           id="global-loader"
           class="fixed inset-0 opacity-100 bg-darkslate-900 text-neutral-50 text-3xl font-black uppercase flex flex-col justify-center items-center w-screen h-screen z-50"
         >
-          <h1 class="loading-name text-center m-0 leading-15">Gianmarco Cavallo</h1>
+          <h1 class="loading-name text-center m-0 leading-15">John Smith</h1>
         </div>
       </body>
     </QwikCityProvider>
