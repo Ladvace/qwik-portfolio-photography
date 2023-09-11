@@ -5,6 +5,7 @@ import type { TimelineDefinition } from "motion";
 import { stagger, timeline } from "motion";
 import Header from "~/components/starter/header/header";
 import LoaderContainer from "~/components/LoaderContainer";
+import CollectionPreview from "~/components/CollectionPreview/CollectionPreview";
 
 export default component$(() => {
   useVisibleTask$(() => {
@@ -80,7 +81,7 @@ export default component$(() => {
       [
         ".word",
         {
-          y: ["100%", "0%"],
+          y: ["150%", "0%"],
           skewX: ["45deg", "0deg"],
           rotate: ["10deg", "0deg"],
         },
@@ -93,8 +94,9 @@ export default component$(() => {
           skewX: ["45deg", "0deg"],
           rotate: ["10deg", "0deg"],
         },
-        { at: "+0.1" },
+        { delay: 1 },
       ],
+      ["body", { overflow: ["hidden", "auto"] }],
     ];
 
     timeline(sequence as TimelineDefinition, { duration: 4 });
@@ -141,14 +143,18 @@ export default component$(() => {
             </video>
           </div>
         </div>
-        <div>
-          <h2 class="mt-10">Works</h2>
-          <p class="text-white">
+        <div class="flex flex-col">
+          <h2 class="mt-10 text-base md:text-3xl">Works</h2>
+          <p class="text-white m-0">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
             numquam. Nemo perspiciatis exercitationem, porro quidem cum
             architecto magni quae consequatur officia hic minus dignissimos
             temporibus necessitatibus aperiam quod est laboriosam?
           </p>
+
+          <div class="flex flex-col gap-4 mt-8">
+            <CollectionPreview />
+          </div>
         </div>
       </div>
     </div>

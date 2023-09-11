@@ -26,7 +26,7 @@ export default component$(() => {
         <RouterHead />
         <ServiceWorkerRegister />
       </head>
-      <body lang="en">
+      <body lang="en" class="overflow-hidden">
         <RouterOutlet />
         <div
           id="global-loader"
