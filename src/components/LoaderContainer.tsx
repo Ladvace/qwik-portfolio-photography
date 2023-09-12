@@ -13,19 +13,27 @@ export const Column = component$(
             props.isMiddle ? "isCenter" : "",
             props.isReversed ? "isReversed" : "",
             props.isEdge ? "isEdge" : "",
-            "flex flex-col flex-none justify-between items-stretch w-screen h-full",
+            "flex flex-col flex-none justify-between items-stretch w-screen h-full will-change-transform",
           ]}
         >
-          <div id="img-container" class="w-screen h-screen box-border relative overflow-hidden rounded-2xl ">
+          <div
+            id="img-container"
+            class="w-screen h-screen box-border relative overflow-hidden rounded-2xl "
+          >
             <img
+              alt="initial animation image"
               width={300}
               height={100}
               class="w-full h-full min-w-full rounded-2xl object-cover"
               src="https://images.pexels.com/photos/17427379/pexels-photo-17427379/free-photo-of-a-pelican-by-a-sea.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             />
           </div>
-          <div id="img-container" class="w-screen h-screen box-border relative overflow-hidden rounded-2xl ">
+          <div
+            id="img-container"
+            class="w-screen h-screen box-border relative overflow-hidden rounded-2xl "
+          >
             <img
+              alt="initial animation image"
               width={300}
               height={100}
               class="w-full h-full min-w-full rounded-2xl object-cover"
@@ -40,22 +48,31 @@ export const Column = component$(
             ]}
           >
             <img
+              alt="initial animation image"
               width={300}
               height={100}
               class="w-full h-full min-w-full rounded-2xl object-cover"
               src="https://images.pexels.com/photos/17427379/pexels-photo-17427379/free-photo-of-a-pelican-by-a-sea.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             />
           </div>
-          <div id="img-container" class="w-screen h-screen box-border relative overflow-hidden rounded-2xl ">
+          <div
+            id="img-container"
+            class="w-screen h-screen box-border relative overflow-hidden rounded-2xl "
+          >
             <img
+              alt="initial animation image"
               width={300}
               height={100}
               class="w-full h-full min-w-full rounded-2xl object-cover"
               src="https://images.pexels.com/photos/17427379/pexels-photo-17427379/free-photo-of-a-pelican-by-a-sea.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             />
           </div>
-          <div id="img-container" class="w-screen h-screen box-border relative overflow-hidden rounded-2xl ">
+          <div
+            id="img-container"
+            class="w-screen h-screen box-border relative overflow-hidden rounded-2xl "
+          >
             <img
+              alt="initial animation image"
               width={300}
               height={100}
               class="w-full h-full min-w-full rounded-2xl object-cover"

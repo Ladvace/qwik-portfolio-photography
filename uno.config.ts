@@ -9,6 +9,9 @@ import presetUno from "@unocss/preset-uno";
 import presetTheme from "unocss-preset-theme";
 
 export default defineConfig({
+  content: {
+    filesystem: ["src/**/*.{ts,tsx}"],
+  },
   theme: {
     colors: {
       darkslate: {

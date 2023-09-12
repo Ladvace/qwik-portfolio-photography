@@ -1,3 +1,4 @@
+import type { NoSerialize } from "@builder.io/qwik";
 import {
   component$,
   useVisibleTask$,
@@ -5,6 +6,7 @@ import {
   createContextId,
   useContextProvider,
   useStore,
+  noSerialize,
 } from "@builder.io/qwik";
 import SplitType from "split-type";
 import type { DocumentHead } from "@builder.io/qwik-city";
@@ -14,13 +16,16 @@ import Header from "~/components/starter/header/header";
 import LoaderContainer from "~/components/LoaderContainer";
 import CollectionPreview from "~/components/CollectionPreview/CollectionPreview";
 import Lenis from "@studio-freight/lenis";
+import VideoPreview from "~/components/VideoPreview";
 
-export const lenisContext = createContextId<{ lenis: Lenis | null }>(
-  "context.lenis"
-);
+interface ILenis {
+  lenis: NoSerialize<Lenis> | null;
+}
+
+export const lenisContext = createContextId<ILenis>("context.lenis");
 
 export default component$(() => {
-  const state = useStore({ lenis: null });
+  const state = useStore<ILenis>({ lenis: null });
   useContextProvider(lenisContext, state);
 
   useVisibleTask$(() => {
@@ -127,7 +132,7 @@ export default component$(() => {
     const lenis = new Lenis();
 
     console.log("lenisState", lenis);
-    state = lenis;
+    state.lenis = noSerialize(lenis);
 
     lenis.on("scroll", (e: any) => {
       console.log(e);
@@ -193,28 +198,33 @@ export default component$(() => {
 
             <div
               id="scroll-loader"
-              class="absolute bottom-10 right-10 w-38 md:w-25 opacity-100 transition-all duration-500 ease-in-out"
+              class="absolute bottom-10 right-10 w-23 opacity-100 transition-all duration-500 ease-in-out"
             >
               <div
                 id="scroll-loader-bar"
                 class="origin-top absolute right-0 top-0 w-0.5 h-full rounded-full bg-primary-500"
               />
-              <p class="m-0 text-5xl md:text-3xl font-sans font-black">
-                Scroll
-              </p>
+              <p class="m-0 text-3xl font-sans font-black">Scroll</p>
             </div>
           </div>
         </div>
-        <div id="works" class="flex flex-col">
-          <h2 class="mt-10 text-base md:text-3xl">Works</h2>
-          <p class="text-white m-0">
+        <div
+          id="about"
+          class="h-screen flex flex-col justify-center items-center"
+        >
+          <h2 class="mt-10 text-6xl md:text-8xl m-0">Who am I?</h2>
+          <p class="text-white mb-0 text-2xl md:text-4xl max-w-4xl font-sans text-center p-4 mt-4 md:mt-10">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
             numquam. Nemo perspiciatis exercitationem, porro quidem cum
             architecto magni quae consequatur officia hic minus dignissimos
             temporibus necessitatibus aperiam quod est laboriosam?
           </p>
-
-          <div class="flex flex-col gap-10 mt-16">
+        </div>
+        <div id="works" class="flex flex-col">
+          <div id="photos" class="relative flex flex-col gap-12 mt-16 pt-30">
+            <h4 class="absolute m-0 top-0 left-1/2 -translate-x-1/2 text-neutral-200 text-8xl md:text-9xl z-0 opacity-50">
+              Photos
+            </h4>
             <CollectionPreview
               title="India"
               imgs={[
@@ -238,6 +248,26 @@ export default component$(() => {
                 "https://images.pexels.com/photos/12583003/pexels-photo-12583003.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
                 "https://images.pexels.com/photos/18210785/pexels-photo-18210785/free-photo-of-road-near-green-mountain-slope.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
               ]}
+            />
+          </div>
+          <div
+            id="videos"
+            class="relative flex flex-col items-center gap-12 mt-16 pt-30"
+          >
+            <h4 class="absolute m-0 top-0 left-1/2 -translate-x-1/2 text-neutral-200 text-8xl md:text-9xl z-0 opacity-50">
+              Videos
+            </h4>
+            <VideoPreview
+              title="Motion"
+              img="https://images.pexels.com/photos/11948417/pexels-photo-11948417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            />
+            <VideoPreview
+              title="Motion"
+              img="https://images.pexels.com/photos/11948417/pexels-photo-11948417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            />
+            <VideoPreview
+              title="Motion"
+              img="https://images.pexels.com/photos/11948417/pexels-photo-11948417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             />
           </div>
         </div>

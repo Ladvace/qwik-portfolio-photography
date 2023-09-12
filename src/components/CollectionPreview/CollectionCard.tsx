@@ -24,6 +24,7 @@ export default component$<CollectionCardProps>(
       <figure class={["flex flex-col cursor-pointer", allClasses]}>
         <div class="h-4/5 w-full rounded-md bg-dark-500 overflow-hidden flex justify-center items-center">
           <img
+            alt={`${title} card image`}
             class="object-cover object-center"
             width={300}
             height={300}
