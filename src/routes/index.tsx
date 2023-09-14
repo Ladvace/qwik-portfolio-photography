@@ -13,10 +13,10 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 import type { TimelineDefinition } from "motion";
 import { animate, stagger, timeline } from "motion";
 import Header from "~/components/starter/header/header";
-import LoaderContainer from "~/components/LoaderContainer";
 import CollectionPreview from "~/components/CollectionPreview/CollectionPreview";
 import Lenis from "@studio-freight/lenis";
 import VideoPreview from "~/components/VideoPreview";
+import { loaderAnimation } from "~/animations";
 
 interface ILenis {
   lenis: NoSerialize<Lenis> | null;
@@ -34,46 +34,11 @@ export default component$(() => {
       wordClass: "word origin-left",
     });
     const sequence = [
-      [
-        "#global-loader",
-        { opacity: [1, 0], pointerEvents: "none" },
-        { easing: "ease-in-out", duration: 0.2 },
-      ],
-      [
-        "#inner-column-container",
-        { height: ["350%", "100%"] },
-        { easing: "ease-in-out", duration: 2.5, name: "initial-scale" },
-      ],
-      [
-        ".isReversed",
-        { y: ["-40%", 0] },
-        { easing: "ease-in-out", duration: 2.5, at: "<" },
-      ],
-      [
-        ".isEdge",
-        { y: ["70%", 0] },
-        { easing: "ease-in-out", duration: 2.5, at: "<" },
-      ],
-      [
-        ".isCenter",
-        { y: ["40%", "0"] },
-        { easing: "ease-in-out", duration: 2.5, at: "<" },
-      ],
-      [
-        "#animation-container",
-        { scale: ["0.23", "1"] },
-        { easing: "ease-in-out", duration: 2, delay: 2 },
-      ],
-      [
-        ".isMiddle img",
-        { scale: ["1.5", "1"] },
-        { easing: "ease-in-out", duration: 2, delay: 2, at: "<" },
-      ],
-      // ----
+      ...loaderAnimation,
       [
         "#outer-container",
         { opacity: [0, 1] },
-        { duration: 0.5, easing: "ease-in-out" },
+        { duration: 0.5, easing: "ease-in-out", at: "-0.4" },
       ],
       [
         "#animation-container",
@@ -131,12 +96,7 @@ export default component$(() => {
   useVisibleTask$(() => {
     const lenis = new Lenis();
 
-    console.log("lenisState", lenis);
     state.lenis = noSerialize(lenis);
-
-    lenis.on("scroll", (e: any) => {
-      console.log(e);
-    });
 
     function raf(time: any) {
       lenis.raf(time);
@@ -158,9 +118,6 @@ export default component$(() => {
 
   return (
     <div class="flex flex-col" document:onscroll$={handleScroll}>
-      <div class="fixed inset-0 w-full h-screen overflow-hidden flex justify-center items-center bg-darkslate-900">
-        <LoaderContainer />
-      </div>
       <div
         id="outer-container"
         class="z-0 w-screen h-full max-w-[1920px] p-8 box-border opacity-0 origin-bottom-center flex flex-col"
@@ -221,12 +178,15 @@ export default component$(() => {
           </p>
         </div>
         <div id="works" class="flex flex-col">
-          <div id="photos" class="relative flex flex-col gap-12 mt-16 pt-30">
+          <div id="photos" class="relative flex flex-col gap-20 mt-16 pt-30">
             <h4 class="absolute m-0 top-0 left-1/2 -translate-x-1/2 text-neutral-200 text-8xl md:text-9xl z-0 opacity-50">
               Photos
             </h4>
             <CollectionPreview
+              id="38jdej"
               title="India"
+              date="10/05/2021"
+              client="Armani"
               imgs={[
                 "https://images.pexels.com/photos/3536704/pexels-photo-3536704.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
                 "https://images.pexels.com/photos/18277249/pexels-photo-18277249/free-photo-of-man-people-art-street.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -234,7 +194,10 @@ export default component$(() => {
               ]}
             />
             <CollectionPreview
+              id="38jdej"
               title="Dark"
+              date="10/05/2021"
+              client="Armani"
               imgs={[
                 "https://images.pexels.com/photos/8686618/pexels-photo-8686618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
                 "https://images.pexels.com/photos/16943740/pexels-photo-16943740/free-photo-of-light-dark-vintage-lamp.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
@@ -242,7 +205,10 @@ export default component$(() => {
               ]}
             />
             <CollectionPreview
+              id="38jdej"
               title="Nature"
+              date="10/05/2021"
+              client="Armani"
               imgs={[
                 "https://images.pexels.com/photos/17233954/pexels-photo-17233954/free-photo-of-house-in-a-grassy-land.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
                 "https://images.pexels.com/photos/12583003/pexels-photo-12583003.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
@@ -252,21 +218,30 @@ export default component$(() => {
           </div>
           <div
             id="videos"
-            class="relative flex flex-col items-center gap-12 mt-16 pt-30"
+            class="relative flex flex-col items-center gap-20 mt-16 pt-30"
           >
             <h4 class="absolute m-0 top-0 left-1/2 -translate-x-1/2 text-neutral-200 text-8xl md:text-9xl z-0 opacity-50">
               Videos
             </h4>
             <VideoPreview
+              id="38jdej"
               title="Motion"
+              date="10/05/2021"
+              client="Armani"
               img="https://images.pexels.com/photos/11948417/pexels-photo-11948417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             />
             <VideoPreview
+              id="38jdej"
               title="Motion"
+              date="10/05/2021"
+              client="Armani"
               img="https://images.pexels.com/photos/11948417/pexels-photo-11948417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             />
             <VideoPreview
+              id="38jdej"
               title="Motion"
+              date="10/05/2021"
+              client="Armani"
               img="https://images.pexels.com/photos/11948417/pexels-photo-11948417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
             />
           </div>
