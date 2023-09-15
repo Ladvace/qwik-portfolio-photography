@@ -1,6 +1,5 @@
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import CollectionCard from "./CollectionCard";
-import { animate, inView } from "motion";
 import { Link } from "@builder.io/qwik-city";
 
 interface Props {

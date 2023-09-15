@@ -35,7 +35,7 @@ export const loaderAnimation = [
     { easing: "ease-in-out", duration: 2, delay: 2, at: "<" },
   ],
   [
-    "#animation-container",
+    "#outer-animation-container",
     { opacity: [1, 0], pointerEvents: "none" },
     { easing: "ease-in-out" },
   ],
