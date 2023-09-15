@@ -1,20 +1,15 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import contentful from "contentful";
 
-const client = new ApolloClient({
-  uri: `https://graphql.contentful.com/content/v1/spaces/${
-    import.meta.env.VITE_CONTENTFUL_SPACE_ID
-  }/environments/master`,
-  cache: new InMemoryCache({
-    resultCaching: false,
-  }),
-  headers: {
-    Authorization: `Bearer ${import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN}`,
-  },
-  defaultOptions: {
-    query: {
-      fetchPolicy: "no-cache",
-    },
-  },
-});
+interface ContentfulClientParams {
+  space: string;
+  environment: string;
+  accessToken: string;
+}
 
-export default client;
+export const getContentfulClient = (params: ContentfulClientParams) => {
+  const contentfulClient = contentful.createClient(params);
+
+  return contentfulClient;
+};
+
+export default getContentfulClient;

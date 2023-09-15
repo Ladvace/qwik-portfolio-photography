@@ -11,5 +11,5 @@ export default component$(() => {
     timeline(loaderAnimation as TimelineDefinition, { duration: 4 });
   });
 
-  return <div>{location.params.id}</div>;
+  return <div class="text-white">ID: {location.params.id}</div>;
 });

@@ -6,7 +6,7 @@ interface Props {
   client?: string;
   date?: string;
   location?: string;
-  img: string;
+  coverImage: string;
   id: string;
 }
 
@@ -84,7 +84,7 @@ export default component$((props: Props) => {
             class="object-cover"
             width="1160"
             height="768"
-            src={props.img}
+            src={props.coverImage}
           />
         </div>
       </div>

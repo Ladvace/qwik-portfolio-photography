@@ -9,7 +9,7 @@ import {
   noSerialize,
 } from "@builder.io/qwik";
 import SplitType from "split-type";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { type DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import type { TimelineDefinition } from "motion";
 import { animate, stagger, timeline } from "motion";
 import Header from "~/components/starter/header/header";
@@ -17,6 +17,9 @@ import CollectionPreview from "~/components/CollectionPreview/CollectionPreview"
 import Lenis from "@studio-freight/lenis";
 import VideoPreview from "~/components/VideoPreview";
 import { loaderAnimation } from "~/animations";
+import { getContentfulClient } from "~/client";
+import { format } from "date-fns";
+import { PhotoProject, VideoProject } from "~/types";
 
 interface ILenis {
   lenis: NoSerialize<Lenis> | null;
@@ -24,9 +27,34 @@ interface ILenis {
 
 export const lenisContext = createContextId<ILenis>("context.lenis");
 
+export const usePhotoProjects = routeLoader$(async (requestEvent) => {
+  const contentful = getContentfulClient({
+    space: requestEvent.env.get("CONTENTFUL_SPACE_ID") as string,
+    environment: requestEvent.env.get("CONTENTFUL_ENVIROMENT") as string,
+    accessToken: requestEvent.env.get("CONTENTFUL_ACCESS_TOKEN") as string,
+  });
+
+  const entries = await contentful.getEntries({ content_type: "photoProject" });
+  return entries.items as PhotoProject[];
+});
+
+export const useVieoProjects = routeLoader$(async (requestEvent) => {
+  const contentful = getContentfulClient({
+    space: requestEvent.env.get("CONTENTFUL_SPACE_ID") as string,
+    environment: requestEvent.env.get("CONTENTFUL_ENVIROMENT") as string,
+    accessToken: requestEvent.env.get("CONTENTFUL_ACCESS_TOKEN") as string,
+  });
+
+  const entries = await contentful.getEntries({ content_type: "videoProject" });
+
+  return entries.items as VideoProject[];
+});
+
 export default component$(() => {
   const state = useStore<ILenis>({ lenis: null });
   useContextProvider(lenisContext, state);
+  const photoProjects = usePhotoProjects();
+  const videoProjects = useVieoProjects();
 
   useVisibleTask$(() => {
     new SplitType("#name", {
@@ -182,39 +210,21 @@ export default component$(() => {
             <h4 class="absolute m-0 top-0 left-1/2 -translate-x-1/2 text-neutral-200 text-8xl md:text-9xl z-0 opacity-50">
               Photos
             </h4>
-            <CollectionPreview
-              id="38jdej"
-              title="India"
-              date="10/05/2021"
-              client="Armani"
-              imgs={[
-                "https://images.pexels.com/photos/3536704/pexels-photo-3536704.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-                "https://images.pexels.com/photos/18277249/pexels-photo-18277249/free-photo-of-man-people-art-street.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-                "https://images.pexels.com/photos/3019411/pexels-photo-3019411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-              ]}
-            />
-            <CollectionPreview
-              id="38jdej"
-              title="Dark"
-              date="10/05/2021"
-              client="Armani"
-              imgs={[
-                "https://images.pexels.com/photos/8686618/pexels-photo-8686618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-                "https://images.pexels.com/photos/16943740/pexels-photo-16943740/free-photo-of-light-dark-vintage-lamp.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
-                "https://images.pexels.com/photos/18048413/pexels-photo-18048413/free-photo-of-vintage-dresser-under-mirror.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
-              ]}
-            />
-            <CollectionPreview
-              id="38jdej"
-              title="Nature"
-              date="10/05/2021"
-              client="Armani"
-              imgs={[
-                "https://images.pexels.com/photos/17233954/pexels-photo-17233954/free-photo-of-house-in-a-grassy-land.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
-                "https://images.pexels.com/photos/12583003/pexels-photo-12583003.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
-                "https://images.pexels.com/photos/18210785/pexels-photo-18210785/free-photo-of-road-near-green-mountain-slope.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load",
-              ]}
-            />
+            {photoProjects.value.map((project) => (
+              <CollectionPreview
+                key={project.sys.id}
+                id={project.sys.id}
+                title={project.fields.title}
+                date={format(
+                  new Date(videoProjects.value[0].fields.projectDate),
+                  "MMMM dd, yyyy"
+                )}
+                client={project.fields.clientName}
+                imgs={project.fields.photos.map(
+                  (photo) => photo.fields.file.url
+                )}
+              />
+            ))}
           </div>
           <div
             id="videos"
@@ -223,27 +233,19 @@ export default component$(() => {
             <h4 class="absolute m-0 top-0 left-1/2 -translate-x-1/2 text-neutral-200 text-8xl md:text-9xl z-0 opacity-50">
               Videos
             </h4>
-            <VideoPreview
-              id="38jdej"
-              title="Motion"
-              date="10/05/2021"
-              client="Armani"
-              img="https://images.pexels.com/photos/11948417/pexels-photo-11948417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            />
-            <VideoPreview
-              id="38jdej"
-              title="Motion"
-              date="10/05/2021"
-              client="Armani"
-              img="https://images.pexels.com/photos/11948417/pexels-photo-11948417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            />
-            <VideoPreview
-              id="38jdej"
-              title="Motion"
-              date="10/05/2021"
-              client="Armani"
-              img="https://images.pexels.com/photos/11948417/pexels-photo-11948417.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            />
+            {videoProjects.value.map((project) => (
+              <VideoPreview
+                key={project.sys.id}
+                id={project.sys.id}
+                title={project.fields.title}
+                date={format(
+                  new Date(videoProjects.value[0].fields.projectDate),
+                  "MMMM dd, yyyy"
+                )}
+                client={project.fields.clientName}
+                coverImage={project.fields.coverImage.fields.file.url}
+              />
+            ))}
           </div>
         </div>
       </div>
