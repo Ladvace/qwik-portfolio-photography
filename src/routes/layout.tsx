@@ -24,7 +24,10 @@ export const useServerTimeLoader = routeLoader$(() => {
 export default component$(() => {
   return (
     <>
-      <div class="fixed inset-0 w-full h-screen overflow-hidden flex justify-center items-center bg-darkslate-900">
+      <div
+        id="outer-animation-container"
+        class="fixed inset-0 w-full h-screen overflow-hidden flex justify-center items-center bg-darkslate-900"
+      >
         <LoaderContainer />
       </div>
       <main class="min-h-screen">

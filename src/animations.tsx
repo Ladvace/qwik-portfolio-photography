@@ -1,3 +1,5 @@
+import type { TimelineDefinition } from "motion";
+
 export const loaderAnimation = [
   [
     "#global-loader",
@@ -39,4 +41,4 @@ export const loaderAnimation = [
     { opacity: [1, 0], pointerEvents: "none" },
     { easing: "ease-in-out" },
   ],
-];
+] as TimelineDefinition;

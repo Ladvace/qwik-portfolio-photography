@@ -19,7 +19,7 @@ import VideoPreview from "~/components/VideoPreview";
 import { loaderAnimation } from "~/animations";
 import { getContentfulClient } from "~/client";
 import { format } from "date-fns";
-import { PhotoProject, VideoProject } from "~/types";
+import type { PhotoProject, VideoProject } from "~/types";
 
 interface ILenis {
   lenis: NoSerialize<Lenis> | null;
@@ -69,11 +69,6 @@ export default component$(() => {
         { duration: 0.5, easing: "ease-in-out", at: "-0.4" },
       ],
       [
-        "#animation-container",
-        { opacity: ["1", "0"] },
-        { easing: "ease-in-out" },
-      ],
-      [
         "#header-name",
         {
           y: ["100%", "0%"],
@@ -109,7 +104,7 @@ export default component$(() => {
         },
         { delay: 1 },
       ],
-      ["body", { overflow: ["hidden", "auto"] }],
+      ["body", { overflowY: ["hidden", "auto"] }],
     ];
 
     timeline(sequence as TimelineDefinition, { duration: 4 });
